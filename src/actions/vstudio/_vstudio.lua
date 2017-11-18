@@ -5,6 +5,16 @@
 --
 
 	premake.vstudio = { }
+
+	local toolsets = {
+		vs2010 = "v100",
+		vs2012 = "v110",
+		vs2013 = "v120",
+		vs2015 = "v140",
+		vs2017 = "v141",
+    }
+    premake.vstudio.toolset = toolsets[_ACTION] or "unknown?"
+    
 	local vstudio = premake.vstudio
 
 
@@ -23,8 +33,6 @@
 		PS3     = "PS3",
 		Xbox360 = "Xbox 360",
 	}
-
-	
 
 --
 -- Returns the architecture identifier for a project.

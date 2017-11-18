@@ -77,6 +77,8 @@
 				_p(2,'<UseOfMfc>Dynamic</UseOfMfc>')
 			end
 			
+            _p(2,'<PlatformToolset>%s</PlatformToolset>', premake.vstudio.toolset)
+
 			_p(2,'<UseDebugLibraries>%s</UseDebugLibraries>'
 				,iif(optimisation(cfg) == "Disabled","true","false"))
 			if cfg.flags.Managed then
@@ -279,9 +281,9 @@
 				_p(3,'<BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>')
 			end
 			
-			if cfg.flags.ExtraWarnings then
-				_p(3,'<SmallerTypeCheck>true</SmallerTypeCheck>')
-			end
+			-- if cfg.flags.ExtraWarnings then
+			--	_p(3,'<SmallerTypeCheck>true</SmallerTypeCheck>')
+			-- end
 		else
 			_p(3,'<StringPooling>true</StringPooling>')
 		end
@@ -542,7 +544,11 @@
 			t = ' DefaultTargets="' .. targets .. '"'
 		end
 		
-		_p('<Project%s ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">', t)
+        if _ACTION > "vs2010" then
+            _p('<Project%s ToolsVersion="%s" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">', t, action.vstudio.toolsVersion)
+        else
+		    _p('<Project%s ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">', t)
+        end
 	end
 
 

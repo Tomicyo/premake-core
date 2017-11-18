@@ -63,6 +63,8 @@
 		"actions/vstudio/vs2005_csproj_user.lua",
 		"actions/vstudio/vs2010_vcxproj.lua",
 		"actions/vstudio/vs2010_vcxproj_filters.lua",
+		"actions/vstudio/vs2015_vcxproj.lua",
+		"actions/vstudio/vs2017_vcxproj.lua",
 		
 		-- Xcode action
 		"actions/xcode/_xcode.lua",
