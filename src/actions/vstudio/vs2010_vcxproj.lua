@@ -401,8 +401,13 @@
 		if cfg.kind ~= 'StaticLib' then
 		
 			if #cfg.links > 0 then
-				_p(3,'<AdditionalDependencies>%s;%%(AdditionalDependencies)</AdditionalDependencies>',
+                if _ACTION > "vs2010" then
+                    _p(3,'<AdditionalDependencies>%s;legacy_stdio_definitions.lib;%%(AdditionalDependencies)</AdditionalDependencies>',
 							table.concat(premake.getlinks(cfg, "all", "fullpath"), ";"))
+                else
+				    _p(3,'<AdditionalDependencies>%s;%%(AdditionalDependencies)</AdditionalDependencies>',
+							table.concat(premake.getlinks(cfg, "all", "fullpath"), ";"))
+                end
 			end
 				_p(3,'<OutputFile>$(OutDir)%s</OutputFile>', cfg.buildtarget.name)	
 				
